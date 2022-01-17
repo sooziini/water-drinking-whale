@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeTab"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/homeicon"
+        android:title=""/>
+
+    <item
+        android:id="@+id/logTab"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/logicon"
+        android:title=""/>
+
+    <item
+        android:id="@+id/noticeTab"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/alarmicon"
+        android:title=""/>
+</menu>

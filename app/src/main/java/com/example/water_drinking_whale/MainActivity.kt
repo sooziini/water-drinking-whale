@@ -2,50 +2,47 @@ package com.example.water_drinking_whale
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import com.example.water_drinking_whale.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)   // 바인딩 객체 획득
+        setContentView(binding.root)        // 액티비티 화면 출력 or getRoot()
 
-        with(supportFragmentManager.beginTransaction()) {
-            val homeFragment = HomeFragment()
-            replace(R.id.container, homeFragment)
-            commit()
-        }
+        initBottomNavigation()
+    }
 
-        bottomNavigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.homeTab -> {
-                    with(supportFragmentManager.beginTransaction()) {
-                        val homeFragment = HomeFragment()
-                        replace(R.id.container, homeFragment)
-                        commit()
+    // BottomNavigation 초기화 및 선택 버튼 설정 함수
+    private fun initBottomNavigation() {
+        binding.bottomNavigation.run {
+            setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.homeTab -> {
+                        changeFragment(HomeFragment())
                     }
-
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.logTab -> {
-                    with(supportFragmentManager.beginTransaction()) {
-                        val logFragment = LogFragment()
-                        replace(R.id.container, logFragment)
-                        commit()
+                    R.id.logTab -> {
+                        changeFragment(LogFragment())
                     }
-
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.noticeTab-> {
-                    with(supportFragmentManager.beginTransaction()) {
-                        val noticeFragment = NoticeFragment()
-                        replace(R.id.container, noticeFragment)
-                        commit()
+                    R.id.noticeTab -> {
+                        changeFragment(NoticeFragment())
                     }
-
-                    return@setOnNavigationItemSelectedListener true
                 }
+                true
             }
-            return@setOnNavigationItemSelectedListener false
+            selectedItemId = R.id.homeTab
+        }
+    }
+
+    // fragment 변경 함수
+    private fun changeFragment(fragment: Fragment) {
+        with(supportFragmentManager.beginTransaction()) {
+            replace(R.id.container, fragment)
+            commit()
         }
     }
 }

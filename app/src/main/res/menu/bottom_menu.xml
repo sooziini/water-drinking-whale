@@ -5,15 +5,15 @@
         android:id="@+id/bottomNavHome"
         android:icon="@drawable/bottom_home"
         android:title="@string/home"
-        app:showAsAction="withText" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/bottomNavLog"
         android:icon="@drawable/bottom_log"
         android:title="@string/log"
-        app:showAsAction="withText" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/bottomNavNotice"
         android:icon="@drawable/bottom_notice"
         android:title="@string/notice"
-        app:showAsAction="withText" />
+        app:showAsAction="always" />
 </menu>

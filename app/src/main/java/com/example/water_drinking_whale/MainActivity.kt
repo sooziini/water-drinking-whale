@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.water_drinking_whale.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,28 +21,28 @@ class MainActivity : AppCompatActivity() {
     // BottomNavigation 초기화 및 선택 버튼 설정 함수
     private fun initBottomNavigation() {
         binding.bottomNavigation.run {
-            setOnItemSelectedListener {
+            setOnNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.homeTab -> {
+                    R.id.bottomNavHome -> {
                         changeFragment(HomeFragment())
                     }
-                    R.id.logTab -> {
+                    R.id.bottomNavLog -> {
                         changeFragment(LogFragment())
                     }
-                    R.id.noticeTab -> {
+                    R.id.bottomNavNotice -> {
                         changeFragment(NoticeFragment())
                     }
                 }
                 true
             }
-            selectedItemId = R.id.homeTab
+            selectedItemId = R.id.bottomNavHome       // 초기값 세팅
         }
     }
 
     // fragment 변경 함수
     private fun changeFragment(fragment: Fragment) {
         with(supportFragmentManager.beginTransaction()) {
-            replace(R.id.container, fragment)
+            replace(binding.mainFrameLayout.id, fragment)
             commit()
         }
     }

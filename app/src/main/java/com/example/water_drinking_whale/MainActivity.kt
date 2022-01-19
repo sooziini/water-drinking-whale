@@ -21,17 +21,11 @@ class MainActivity : AppCompatActivity() {
     // BottomNavigation 초기화 및 선택 버튼 설정 함수
     private fun initBottomNavigation() {
         binding.bottomNavigation.run {
-            setOnNavigationItemSelectedListener {
+            setOnItemSelectedListener {
                 when (it.itemId) {
-                    R.id.bottomNavHome -> {
-                        changeFragment(HomeFragment())
-                    }
-                    R.id.bottomNavLog -> {
-                        changeFragment(LogFragment())
-                    }
-                    R.id.bottomNavNotice -> {
-                        changeFragment(NoticeFragment())
-                    }
+                    R.id.bottomNavHome -> changeFragment(HomeFragment())
+                    R.id.bottomNavLog -> changeFragment(LogFragment())
+                    R.id.bottomNavNotice -> changeFragment(NoticeFragment())
                 }
                 true
             }

@@ -4,16 +4,16 @@
     <item
         android:id="@+id/bottomNavHome"
         android:icon="@drawable/bottom_home"
-        android:title="물마시기"
+        android:title="@string/home"
         app:showAsAction="withText" />
     <item
         android:id="@+id/bottomNavLog"
         android:icon="@drawable/bottom_log"
-        android:title="기록"
+        android:title="@string/log"
         app:showAsAction="withText" />
     <item
         android:id="@+id/bottomNavNotice"
         android:icon="@drawable/bottom_notice"
-        android:title="알림"
+        android:title="@string/notice"
         app:showAsAction="withText" />
 </menu>

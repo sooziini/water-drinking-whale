@@ -8,6 +8,13 @@
 
     <!-- home fragment -->
     <string name="home_today">오늘의 물 섭취량은?</string>
+    <string name="home_today_intake">오늘의 물 섭취량을 입력해 주세요!</string>
+    <string name="ex_intake">100</string>
+    <string name="ex_intake_unit">ml</string>
     <string name="home_setting">설정</string>
+
+    <!-- button -->
+    <string name="positive_btn">확인</string>
+    <string name="negative_btn">취소</string>
 
 </resources>

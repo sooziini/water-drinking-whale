@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">Water-Drinking-Whale</string>
+    <string name="app_name">물먹는고래</string>
+    <string name="home">물마시기</string>
+    <string name="log">기록</string>
+    <string name="notice">알림</string>
 </resources>

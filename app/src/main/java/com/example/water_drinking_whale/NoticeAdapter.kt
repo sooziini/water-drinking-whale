@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.water_drinking_whale.databinding.NoticeBinding
+import com.example.water_drinking_whale.dataclass.Time
 import java.util.ArrayList
 
 class NoticeAdapter: RecyclerView.Adapter<NoticeAdapter.ViewHolder>() {

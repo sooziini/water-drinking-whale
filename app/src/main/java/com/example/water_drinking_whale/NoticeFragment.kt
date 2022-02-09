@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.water_drinking_whale.databinding.FragmentNoticeBinding
+import com.example.water_drinking_whale.dataclass.Time
 import java.util.*
 
 

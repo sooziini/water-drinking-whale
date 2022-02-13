@@ -1,14 +1,18 @@
 package com.example.water_drinking_whale
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.water_drinking_whale.database.Notice
+import com.example.water_drinking_whale.databinding.FragmentLogBinding
 import com.example.water_drinking_whale.databinding.NoticeBinding
 import com.example.water_drinking_whale.dataclass.Time
 import java.util.ArrayList
 
-class NoticeAdapter: RecyclerView.Adapter<NoticeAdapter.ViewHolder>() {
-    var items = ArrayList<Time>()
+class NoticeAdapter(val context:Context, var list:List<Notice>, var onDeleteListener: onDeleteListener): RecyclerView.Adapter<NoticeAdapter.ViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = NoticeBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -17,22 +21,31 @@ class NoticeAdapter: RecyclerView.Adapter<NoticeAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(val binding:NoticeBinding):RecyclerView.ViewHolder(binding.root){
-        fun setItem(item: Time){
-            binding.ampmTv.text = item.am_pm
-            binding.hourTv.text = item.hour.toString()
-            binding.minuteTv.text = item.minute.toString()
+        val am_pm = binding.ampmTv
+        val hour = binding.hourTv
+        val minute = binding.minuteTv
+        val root = binding.noticeRoot
 
-        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val item = items[position]
-        holder.setItem(item)
+        val notice = list[position]
+        holder.am_pm.text = notice.am_pm
+        holder.hour.text = notice.hour.toString()
+        holder.minute.text = notice.minute.toString()
+
+        holder.root.setOnLongClickListener(object : View.OnLongClickListener{
+            override fun onLongClick(p0: View?): Boolean {
+                onDeleteListener.onDeleteListener(notice)
+                return true
+            }
+
+        })
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return list.size
     }
 
 

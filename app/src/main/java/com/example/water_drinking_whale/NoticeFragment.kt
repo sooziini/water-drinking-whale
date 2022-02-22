@@ -55,8 +55,11 @@ class NoticeFragment : Fragment(), onDeleteListener {
         super.onViewCreated(view, savedInstanceState)
         // 코드 작성
 
+
+
         db = AppDatabase.getInstance(mainActivity)!!
 
+        getAllNotice()
 
         binding.addNoticeBtn.setOnClickListener {
 

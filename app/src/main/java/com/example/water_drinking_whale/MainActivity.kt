@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.water_drinking_whale.databinding.ActivityMainBinding
+import com.example.water_drinking_whale.presentation.home.HomeFragment
+import com.example.water_drinking_whale.presentation.log.LogFragment
+import com.example.water_drinking_whale.presentation.notice.NoticeFragment
 
 class MainActivity : AppCompatActivity() {
 

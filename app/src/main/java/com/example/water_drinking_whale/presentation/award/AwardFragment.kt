@@ -1,22 +1,21 @@
-package com.example.water_drinking_whale
+package com.example.water_drinking_whale.presentation.award
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.water_drinking_whale.databinding.FragmentLogBinding
+import com.example.water_drinking_whale.databinding.FragmentAwardBinding
 
-class LogFragment : Fragment() {
-
-    private var _binding: FragmentLogBinding? = null
+class AwardFragment : Fragment() {
+    private var _binding: FragmentAwardBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLogBinding.inflate(inflater, container, false)
+        _binding = FragmentAwardBinding.inflate(inflater, container, false)
         return binding.root
     }
 

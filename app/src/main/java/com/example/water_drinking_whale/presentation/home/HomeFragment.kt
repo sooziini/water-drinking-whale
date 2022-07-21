@@ -1,13 +1,18 @@
-package com.example.water_drinking_whale
+package com.example.water_drinking_whale.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.water_drinking_whale.R
 import com.example.water_drinking_whale.databinding.DialogHomeBinding
 import com.example.water_drinking_whale.databinding.FragmentHomeBinding
+import com.example.water_drinking_whale.presentation.mypage.MyPageActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -25,6 +30,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setToolbar()
+        setDB()
 
         binding.homeFragmentBtn.setOnClickListener {
             setWaterIntakeDialog()
@@ -37,7 +43,7 @@ class HomeFragment : Fragment() {
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.homeSetting -> {
-                        startActivity(Intent(activity, SettingActivity::class.java))
+                        startActivity(Intent(activity, MyPageActivity::class.java))
                         true
                     }
                     else -> false
@@ -66,11 +72,21 @@ class HomeFragment : Fragment() {
                 } else {
                     val total = todayIntake.text.toString().toInt() + intakeEt.text.toString().toInt()
                     todayIntake.text = total.toString()
-                    // TODO: 오늘의 물 섭취량(total) db update 해야 함
+                    updateDB(total)
                     dismiss()
                 }
             }
         }
+    }
+
+    private fun setDB() {
+
+    }
+
+    private fun updateDB(todayIntake: Int) {
+        Log.d("abc",
+           SimpleDateFormat("yyyy-MM-dd", Locale("ko", "KR")).format(Date())
+        )
     }
 
     override fun onDestroyView() {

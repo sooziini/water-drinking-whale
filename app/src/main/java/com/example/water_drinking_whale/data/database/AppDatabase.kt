@@ -1,4 +1,4 @@
-package com.example.water_drinking_whale.database
+package com.example.water_drinking_whale.data.database
 
 import android.content.Context
 import androidx.room.Database

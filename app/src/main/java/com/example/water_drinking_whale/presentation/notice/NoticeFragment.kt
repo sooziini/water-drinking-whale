@@ -1,41 +1,32 @@
-package com.example.water_drinking_whale
-
+package com.example.water_drinking_whale.presentation.notice
 
 import android.annotation.SuppressLint
-
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.AsyncTask
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.water_drinking_whale.database.AppDatabase
-import com.example.water_drinking_whale.database.Notice
+import com.example.water_drinking_whale.MainActivity
+import com.example.water_drinking_whale.data.database.AppDatabase
+import com.example.water_drinking_whale.data.database.Notice
+import com.example.water_drinking_whale.data.database.OnDeleteListener
 import com.example.water_drinking_whale.databinding.FragmentNoticeBinding
+import java.util.Calendar
 
-import java.util.*
-
-
-class NoticeFragment : Fragment(), onDeleteListener {
+class NoticeFragment : Fragment(), OnDeleteListener {
 
     private var _binding: FragmentNoticeBinding? = null
     private val binding get() = _binding!!
 
-
-
     private var ampm: String? = null
-
-
 
     lateinit var db: AppDatabase
 
-    var noticeList:List<Notice> = listOf<Notice>()
-
-
-
+    var noticeList: List<Notice> = listOf<Notice>()
 
     lateinit var mainActivity: MainActivity
 
@@ -45,7 +36,8 @@ class NoticeFragment : Fragment(), onDeleteListener {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNoticeBinding.inflate(inflater, container, false)
@@ -56,8 +48,6 @@ class NoticeFragment : Fragment(), onDeleteListener {
         super.onViewCreated(view, savedInstanceState)
         // 코드 작성
 
-
-
         db = AppDatabase.getInstance(mainActivity)!!
 
         //알람 화면에 저장된 알람 목록 표시
@@ -66,43 +56,24 @@ class NoticeFragment : Fragment(), onDeleteListener {
         //알람 연결을 위해 db내용 list에 저장
         noticeList = db.noticeDao().getAll()
 
-
-        //binding.textView2.text = noticeList[0].am_pm
-
-
         binding.addNoticeBtn.setOnClickListener {
-            var calendar = Calendar.getInstance()
-            var hour = calendar.get(Calendar.HOUR)
-            var minute = calendar.get(Calendar.MINUTE)
+            val calendar = Calendar.getInstance()
+            val hour = calendar.get(Calendar.HOUR)
+            val minute = calendar.get(Calendar.MINUTE)
 
-            var listener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+            val listener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 val notice = Notice(null, timeSet(hour), minute, AM_PM(hour))
                 insertNotice(notice)
-
-
             }
-            var picker = TimePickerDialog(context, listener,hour, minute, true)
+            val picker = TimePickerDialog(context, listener, hour, minute, true)
             picker.show()
 
-
-
         }
-
-/*
-        for (i in noticeList.indices){
-            notice = noticeList[i]
-        }*/
-
-
-
-
-
-
     }
 
     @SuppressLint("StaticFieldLeak")
-    fun insertNotice(notice: Notice){
-        val insertTask = object : AsyncTask<Unit, Unit, Unit>(){
+    fun insertNotice(notice: Notice) {
+        val insertTask = object : AsyncTask<Unit, Unit, Unit>() {
             override fun doInBackground(vararg params: Unit?){
                 db.noticeDao().insert(notice)
             }
@@ -129,8 +100,6 @@ class NoticeFragment : Fragment(), onDeleteListener {
             }
         }
         getTask.execute()
-
-
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -159,18 +128,17 @@ class NoticeFragment : Fragment(), onDeleteListener {
     //24시간 단위 12시간 단위로 변경
     private fun timeSet(hour:Int):Int{
         var hour = hour
-        if (hour>12){
+        if (hour> 12) {
             hour -= 12
         }
         return hour
     }
 
-    //오전 오후 결정
-    private fun AM_PM(hour:Int):String{
-        ampm = if (hour>=12) {
+    // 오전 오후 결정
+    private fun AM_PM(hour: Int): String {
+        ampm = if (hour >= 12) {
             "오후"
-        }
-        else{
+        } else {
             "오전"
         }
         return ampm!!
@@ -185,5 +153,4 @@ class NoticeFragment : Fragment(), onDeleteListener {
         super.onDestroyView()
         _binding = null
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.water_drinking_whale.database
+package com.example.water_drinking_whale.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

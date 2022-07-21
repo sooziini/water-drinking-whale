@@ -1,10 +1,12 @@
 package com.example.water_drinking_whale
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.water_drinking_whale.databinding.ActivityMainBinding
+import com.example.water_drinking_whale.presentation.home.HomeFragment
+import com.example.water_drinking_whale.presentation.log.LogFragment
+import com.example.water_drinking_whale.presentation.notice.NoticeFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,8 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)   // 바인딩 객체 획득
-        setContentView(binding.root)        // 액티비티 화면 출력 or getRoot()
+        binding = ActivityMainBinding.inflate(layoutInflater) // 바인딩 객체 획득
+        setContentView(binding.root) // 액티비티 화면 출력 or getRoot()
 
         initBottomNavigation()
     }
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
-            selectedItemId = R.id.bottomNavHome       // 초기값 세팅
+            selectedItemId = R.id.bottomNavHome // 초기값 세팅
         }
     }
 
@@ -41,6 +43,4 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
     }
-
-
 }

@@ -2,7 +2,7 @@ package com.example.water_drinking_whale
 
 
 import android.annotation.SuppressLint
-import android.app.Activity
+
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.AsyncTask
@@ -15,8 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.water_drinking_whale.database.AppDatabase
 import com.example.water_drinking_whale.database.Notice
 import com.example.water_drinking_whale.databinding.FragmentNoticeBinding
-import com.example.water_drinking_whale.databinding.NoticeBinding
-import com.example.water_drinking_whale.dataclass.Time
+
 import java.util.*
 
 
@@ -32,7 +31,9 @@ class NoticeFragment : Fragment(), onDeleteListener {
 
 
     lateinit var db: AppDatabase
+
     var noticeList:List<Notice> = listOf<Notice>()
+
 
 
 
@@ -59,10 +60,17 @@ class NoticeFragment : Fragment(), onDeleteListener {
 
         db = AppDatabase.getInstance(mainActivity)!!
 
+        //알람 화면에 저장된 알람 목록 표시
         getAllNotice()
 
-        binding.addNoticeBtn.setOnClickListener {
+        //알람 연결을 위해 db내용 list에 저장
+        noticeList = db.noticeDao().getAll()
 
+
+        //binding.textView2.text = noticeList[0].am_pm
+
+
+        binding.addNoticeBtn.setOnClickListener {
             var calendar = Calendar.getInstance()
             var hour = calendar.get(Calendar.HOUR)
             var minute = calendar.get(Calendar.MINUTE)
@@ -77,7 +85,15 @@ class NoticeFragment : Fragment(), onDeleteListener {
             picker.show()
 
 
+
         }
+
+/*
+        for (i in noticeList.indices){
+            notice = noticeList[i]
+        }*/
+
+
 
 
 
